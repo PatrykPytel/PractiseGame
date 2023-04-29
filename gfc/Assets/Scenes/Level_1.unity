@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 108751034}
   - component: {fileID: 108751035}
   - component: {fileID: 108751036}
+  - component: {fileID: 108751037}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -375,6 +376,27 @@ CircleCollider2D:
   m_Offset: {x: 0.038746834, y: -0.3632555}
   serializedVersion: 2
   m_Radius: 0.5450077
+--- !u!95 &108751037
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108751029}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb921a6e40d94cc4db0a89b0c0ada654, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &111133362
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483386226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.89, z: 0}
+  m_LocalPosition: {x: 0, y: 0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
