@@ -7,16 +7,19 @@ public class Healthmanager : MonoBehaviour
 {
     public int health = 6;
     public Image[] hearts;
+    public Sprite pelneserce;
+    public Sprite pusteserce;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        foreach(Image img in hearts)
+        {
+            img.sprite = pusteserce;
+        }
+        for (int i=0; i<health;i++)
+        {
+            hearts[i].sprite = pelneserce;
+        }
+
     }
 }
