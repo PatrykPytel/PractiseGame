@@ -1,21 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+using System.Collections.Generic; //BIADA TYM KTORZY SPROBUJA TEN KOD ZROZUMIEC!!! 
+using UnityEngine;                //BIADA POWIADAM!!
+using UnityEngine.UI;             //BIADA!
 
 public class Healthmanager : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-    public int health;
+    [SerializeField] private float PoczatkoweZycie;
+    public float health;
     public Image[] hearts;
     public Sprite pelneserce;
     public Sprite pusteserce;
     public bool enemyIsClose;
-    public GameObject Huj1;
-    public GameObject Huj2;
+    [SerializeField] private float niesmiertelnosc;
+    [SerializeField] private float lflashy;
+    [SerializeField] private float damage;
+    private SpriteRenderer spriteRend;
+    
+    void Start()
+    {
+        spriteRend = GetComponent<SpriteRenderer>();
+        
+    }
+    private void Awake()
+    {
+        health = PoczatkoweZycie;
+
+    }
+    public void TakeDamage(float _damage)
+    {
+        health = Mathf.Clamp(health - _damage,0,PoczatkoweZycie);
+        if(health>0)
+        {
+            StartCoroutine(Niesmiertelnosc());
+
+
+        }
+    }
+
     
 
 
@@ -29,29 +50,29 @@ public class Healthmanager : MonoBehaviour
         {
             hearts[i].sprite = pelneserce;
         }
-        if (enemyIsClose)
-        {
-            Debug.Log(health);
-            health-=2;
-            
-            
-
-            
-            
-            
-        }
-
-         
-
     }
 
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag=="Enemy")
+        if (collision.tag=="Enemy")
         {
-            enemyIsClose=true;
+            TakeDamage(damage);
         }
+    }
+    private IEnumerator Niesmiertelnosc()
+    {
+        Physics2D.IgnoreLayerCollision(10,11, true);
+        for(int i =0; i<lflashy; i++)
+        {
+            spriteRend.color= new Color(1,0,0,0.5f);
+            yield return new WaitForSeconds(1);
+            spriteRend.color = Color.white;
+            yield return new WaitForSeconds(1);
+        }
+        Physics2D.IgnoreLayerCollision(10,11, false);
+
+
     } 
 
     

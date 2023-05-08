@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 40210439}
   - component: {fileID: 40210441}
   - component: {fileID: 40210440}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 108751036}
   - component: {fileID: 108751037}
   - component: {fileID: 108751038}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -444,8 +444,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 119619583
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 28e251c527710b44ba1d7502352ceb1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -610,8 +610,8 @@ MonoBehaviour:
   pelneserce: {fileID: 1675199627, guid: 883a67ecb63030c46990a7bc1abedfe0, type: 3}
   pusteserce: {fileID: -409356005, guid: 883a67ecb63030c46990a7bc1abedfe0, type: 3}
   enemyIsClose: 0
-  Huj1: {fileID: 108751029}
-  Huj2: {fileID: 40210435}
+  niesmiertelnosc: 2
+  lflashy: 3
 --- !u!1 &111133362
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 111133363}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -911,7 +911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 483386227}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
