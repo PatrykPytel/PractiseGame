@@ -2,33 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
-public class GameIsOver : MonoBehaviour
+public class EndofGame : MonoBehaviour
 {
-    public static bool YouDied= false;
-    public GameObject GameOverUI;
-    public Healthmanager script;
-    void Start()
-    {
-    
-    }
-    
+    [SerializeField] private Healthmanager Zycie;
+    public static bool YouDied = false;
+    public GameObject GameOverUI;  
     // Start is called before the first frame update
 
     // Update is called once per frame
     void Update()
     {
-        if (script.health==0)
+        if (Zycie.health==0)
         {
             Pause();
-          //  if (YouDied==true)
-            //{
-              //  Resume();
-            //}
-            //el/se
-            //{
-              //  Pause();
-            //}
             
         }
 
@@ -54,3 +42,4 @@ public class GameIsOver : MonoBehaviour
 
     }
 }
+
