@@ -33,7 +33,7 @@ public class Healthmanager : MonoBehaviour
         {
             Debug.Log(health);
             health-=2;
-            Physics2D.IgnoreCollision(Huj1.GetComponent<Collider2D>(), Huj2.GetComponent<Collider2D>());
+            
             
 
             
@@ -44,15 +44,15 @@ public class Healthmanager : MonoBehaviour
          
 
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
 
-            enemyIsClose = true;
-            
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag=="Enemy")
+        {
+            enemyIsClose=true;
         }
-    }   
+    } 
 
     
 }
