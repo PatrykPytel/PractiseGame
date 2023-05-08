@@ -39,6 +39,7 @@ public class EndofGame : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        
 
     }
 }
