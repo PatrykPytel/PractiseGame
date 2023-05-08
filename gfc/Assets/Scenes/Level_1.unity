@@ -599,6 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fa6a888e37f1e479dc0d1c93c4cd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PoczatkoweZycie: 6
   health: 6
   hearts:
   - {fileID: 1995448457}
@@ -610,8 +611,9 @@ MonoBehaviour:
   pelneserce: {fileID: 1675199627, guid: 883a67ecb63030c46990a7bc1abedfe0, type: 3}
   pusteserce: {fileID: -409356005, guid: 883a67ecb63030c46990a7bc1abedfe0, type: 3}
   enemyIsClose: 0
-  niesmiertelnosc: 2
+  niesmiertelnosc: 1
   lflashy: 3
+  damage: 2
 --- !u!1 &111133362
 GameObject:
   m_ObjectHideFlags: 0
