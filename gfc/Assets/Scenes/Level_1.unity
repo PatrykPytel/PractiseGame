@@ -136,11 +136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 797110719301467346, guid: ad0efab003c966b4c99c12cefcdf4d88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5723453
+      value: -3.27
       objectReference: {fileID: 0}
     - target: {fileID: 797110719301467346, guid: ad0efab003c966b4c99c12cefcdf4d88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.321256
+      value: -8.51
       objectReference: {fileID: 0}
     - target: {fileID: 797110719301467346, guid: ad0efab003c966b4c99c12cefcdf4d88, type: 3}
       propertyPath: m_LocalPosition.z
@@ -194,9 +194,9 @@ GameObject:
   - component: {fileID: 40210439}
   - component: {fileID: 40210441}
   - component: {fileID: 40210440}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Monster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 108751038}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -563,9 +563,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.038746834, y: -0.3632555}
+  m_Offset: {x: 0.038746834, y: -0.34112155}
   serializedVersion: 2
-  m_Radius: 0.5450077
+  m_Radius: 0.5228745
 --- !u!95 &108751037
 Animator:
   serializedVersion: 5
@@ -594,7 +594,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108751029}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2fa6a888e37f1e479dc0d1c93c4cd89, type: 3}
   m_Name: 
@@ -609,6 +609,9 @@ MonoBehaviour:
   - {fileID: 211437947}
   pelneserce: {fileID: 1675199627, guid: 883a67ecb63030c46990a7bc1abedfe0, type: 3}
   pusteserce: {fileID: -409356005, guid: 883a67ecb63030c46990a7bc1abedfe0, type: 3}
+  enemyIsClose: 0
+  Huj1: {fileID: 108751029}
+  Huj2: {fileID: 40210435}
 --- !u!1 &111133362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1145,6 @@ GameObject:
   - component: {fileID: 618296699}
   - component: {fileID: 618296698}
   - component: {fileID: 618296702}
-  - component: {fileID: 618296703}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1241,33 +1243,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 618296697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7bf7c3867aea8040a22ef1ccbb5bebd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e1cbf949563dda439233a583395f58c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Zycie: {fileID: 108751038}
   GameOverUI: {fileID: 1848666006}
-  script: {fileID: 618296703}
---- !u!114 &618296703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618296697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fa6a888e37f1e479dc0d1c93c4cd89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 6
-  hearts:
-  - {fileID: 1995448457}
-  - {fileID: 1454657454}
-  - {fileID: 138085764}
-  - {fileID: 1062827783}
-  - {fileID: 385685765}
-  - {fileID: 211437947}
-  pelneserce: {fileID: 1675199627, guid: 883a67ecb63030c46990a7bc1abedfe0, type: 3}
-  pusteserce: {fileID: -409356005, guid: 883a67ecb63030c46990a7bc1abedfe0, type: 3}
 --- !u!1 &738238904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,7 +2095,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 618296702}
-        m_TargetAssemblyTypeName: GameIsOver, Assembly-CSharp
+        m_TargetAssemblyTypeName: EndofGame, Assembly-CSharp
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
