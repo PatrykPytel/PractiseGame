@@ -32,8 +32,13 @@ public class Attack : MonoBehaviour
                    
                     Destroy(enemiesToDamage[i].gameObject);
                     
+                    
                 }
 
+            }
+            else if(Input.GetKeyUp(KeyCode.E))
+            {
+                animator.SetBool("Isattacking", false);
             }
             timeBtwAttack = startTimeBtwAttack;
             

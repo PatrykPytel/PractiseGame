@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 40210439}
   - component: {fileID: 40210441}
   - component: {fileID: 40210440}
+  - component: {fileID: 40210442}
   m_Layer: 11
   m_Name: Monster
   m_TagString: Enemy
@@ -356,6 +357,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &40210442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40210435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805191a918a5d8c4eaabc96c629434f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &108751029
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +386,7 @@ GameObject:
   - component: {fileID: 108751036}
   - component: {fileID: 108751037}
   - component: {fileID: 108751038}
+  - component: {fileID: 108751039}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -472,6 +486,7 @@ Transform:
   m_Children:
   - {fileID: 483386227}
   - {fileID: 111133363}
+  - {fileID: 1334796006}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -614,6 +629,25 @@ MonoBehaviour:
   niesmiertelnosc: 1
   lflashy: 3
   damage: 2
+--- !u!114 &108751039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108751029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cddee05f7a6b4e04090e4e84af1374e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 108751037}
+  startTimeBtwAttack: 1
+  attackPos: {fileID: 1334796006}
+  attackRange: 5
+  whatisEnemies:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &111133362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,6 +1675,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1334796005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1334796006}
+  m_Layer: 10
+  m_Name: AttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1334796006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334796005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.16, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 108751032}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1451489190
 PrefabInstance:
