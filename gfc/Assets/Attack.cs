@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-  //  private float timeBtwAttack;
+    private float timeBtwAttack;
     public Animator animator;
-    //public  float startTimeBtwAttack;
-   // public Transform attackPos;
-   // public float attackRange;
+    public  float startTimeBtwAttack;
+    public Transform attackPos;
+    public float attackRange;
     public LayerMask whatisEnemies;
     public bool enemyIsClose;
     public GameObject Monster;
@@ -16,23 +16,29 @@ public class Attack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         
+
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+      
 
         //if(timeBtwAttack <=0)
        // {
          //   if(Input.GetKey(KeyCode.E))
            // {
              //   animator.SetBool("Isattacking", true);
-               // Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position,attackRange,whatisEnemies );
+            //    Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position,attackRange,whatisEnemies );
             //    for (int i = 0; i < enemiesToDamage.Length;i++)
             ///    {
                    
-            //        Destroy(enemiesToDamage[i].gameObject);
+                 //   Destroy(enemiesToDamage[i].gameObject);
                     
                     
             //    }
@@ -51,24 +57,35 @@ public class Attack : MonoBehaviour
             
         
        // }
-      if (enemyIsClose==true)
+      if (timeBtwAttack<=0)
       {
+          timeBtwAttack =startTimeBtwAttack;
 
 
-        if(Input.GetKeyDown(KeyCode.Mouse0))
-        {
 
+
+          if(Input.GetKeyDown(KeyCode.Mouse0))
+          {
+       //   Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position,attackRange,whatisEnemies );
+      //    for (int i = 0; i < enemiesToDamage.Length;i++)
+         // {
+
+             // Destroy(enemiesToDamage[i].gameObject);
+
+       //   }
+//
           
-          Debug.Log("MOuse");
-          animator.SetBool("Isattacking", true);
-          Destroy(Monster);
-        }
+              Debug.Log("MOuse");
+              animator.SetBool("Isattacking", true);
+              Destroy(Monster);
+          }
           
 
       }
       else
       {
-        animator.SetBool("Isattacking", false);
+          timeBtwAttack -= Time.deltaTime;
+          animator.SetBool("Isattacking", false);
       }
     }
     private void OnTriggerEnter2D(Collider2D other)
