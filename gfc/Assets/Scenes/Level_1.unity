@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 108751037}
-  startTimeBtwAttack: 0.3
+  startTimeBtwAttack: 0.1
   attackPos: {fileID: 1334796006}
   attackRange: 1.44
   whatisEnemies:
