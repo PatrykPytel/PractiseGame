@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
-    float runSpeed=40f;
+    public float runSpeed=40f;
     float  horizontalMove =0f;
     bool jump= false;
     bool crouch =false;
@@ -29,7 +29,15 @@ public class PlayerMovement : MonoBehaviour
         } else if(Input.GetButtonUp("Crouch"))
         {
             crouch= false;
-        }
+        } else if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            runSpeed = 1500000000f;
+            while (runSpeed>40f) 
+            {
+                runSpeed= runSpeed - 0.001f;
+            }
+            runSpeed = 40f;
+        } 
     }
     public void OnLanding()
     {

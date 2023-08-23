@@ -13,6 +13,9 @@ public class shift : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Debug.Log("TAK");
+        }
     }
 }
