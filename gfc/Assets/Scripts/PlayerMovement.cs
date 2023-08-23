@@ -31,12 +31,12 @@ public class PlayerMovement : MonoBehaviour
             crouch= false;
         } else if(Input.GetKeyDown(KeyCode.LeftShift))
         {
-            runSpeed = 1500000000f;
-            while (runSpeed>40f) 
-            {
-                runSpeed= runSpeed - 0.001f;
+            if (runSpeed> 40f){
+                runSpeed = 40f;
+            }else {
+                runSpeed = 75f;
             }
-            runSpeed = 40f;
+            
         } 
     }
     public void OnLanding()
