@@ -28,15 +28,7 @@ public class Attacking : MonoBehaviour
                 {
                     Destroy(Monster);
                 }
-
-
-
             }
-            else if(Input.GetKeyUp(KeyCode.Mouse0))
-            {
-
-            }
-
         }
         else
         {

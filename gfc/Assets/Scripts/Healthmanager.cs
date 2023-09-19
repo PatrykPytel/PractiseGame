@@ -31,6 +31,7 @@ public class Healthmanager : MonoBehaviour
         health = Mathf.Clamp(health - _damage,0,PoczatkoweZycie);
         if(health>0)
         {
+
             StartCoroutine(Niesmiertelnosc());
 
 
@@ -77,3 +78,4 @@ public class Healthmanager : MonoBehaviour
 
     
 }
+
