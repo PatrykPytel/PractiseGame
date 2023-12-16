@@ -34,7 +34,7 @@ public class Attacking : MonoBehaviour
         {
             timeBtwAttack -= 1;
             animator.SetBool("Isattacking", false);
-            console.log('fal');
+            
         }
     }
     void OnDrawGizmosSelected()
