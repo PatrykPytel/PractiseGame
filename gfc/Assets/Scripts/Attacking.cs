@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Attacking : MonoBehaviour
 {
-    private float timeBtwAttack;
     public Animator animator;
-    public  float startTimeBtwAttack;
     public Transform attackPos;
     public float attackRange;
     public LayerMask whatisEnemies;
@@ -15,26 +13,18 @@ public class Attacking : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-
-        if(timeBtwAttack<=0)
+        if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            timeBtwAttack=startTimeBtwAttack;
-            if(Input.GetKeyDown(KeyCode.Mouse0))
+            animator.SetBool("Isattacking", true);
+            Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
+            for (int i = 0; i < enemiesToDamage.Length; i++)
             {
-                animator.SetBool("Isattacking", true);
-                
-                Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
-                {
-                    Destroy(Monster);
-                }
+                Destroy(Monster);
             }
         }
         else
         {
-            timeBtwAttack -= 1;
             animator.SetBool("Isattacking", false);
-            
         }
     }
     void OnDrawGizmosSelected()

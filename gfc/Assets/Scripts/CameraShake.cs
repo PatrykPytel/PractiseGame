@@ -8,6 +8,11 @@ public class CameraShake : MonoBehaviour
     public AnimationCurve curve;
     public float ShakeTime = 1f;
     
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.Mouse0)) {
+            StartCoroutine(Shake());
+        }
+    }
     private void Awake() {
         Myinstance = this;
     }
