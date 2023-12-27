@@ -769,11 +769,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 7ea2b356-7ea1-4cd7-9745-6ecfac27d2d3
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: gfc
+  organizationId: patryk_pytel
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
