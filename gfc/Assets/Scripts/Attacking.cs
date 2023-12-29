@@ -18,8 +18,8 @@ public class Attacking : MonoBehaviour
             animator.SetBool("Isattacking", true);
             Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
             for (int i = 0; i < enemiesToDamage.Length; i++)
-            {
-                Destroy(Monster);
+            {   
+                Monster.GetComponent<EnemyHealth>().monsterhurt();
             }
         }
         else
