@@ -558,6 +558,7 @@ MonoBehaviour:
   controller: {fileID: 108751035}
   animator: {fileID: 108751037}
   runSpeed: 40
+  dashtime: 0.15
 --- !u!114 &108751035
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     float  horizontalMove =0f;
     bool jump= false;
     bool crouch =false;
+    public float dashtime=0.5f;
 
     // Update is called once per frame
     void Update()
@@ -34,10 +35,15 @@ public class PlayerMovement : MonoBehaviour
             if (runSpeed> 40f){
                 runSpeed = 40f;
             }else {
-                runSpeed = 75f;
+                runSpeed = 250f;
+                Invoke("stopdash", dashtime); 
             }
             
         } 
+    }
+    void stopdash()
+    {
+        runSpeed = 40f;
     }
     public void OnLanding()
     {
