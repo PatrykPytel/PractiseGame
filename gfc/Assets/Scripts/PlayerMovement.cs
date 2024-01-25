@@ -30,20 +30,19 @@ public class PlayerMovement : MonoBehaviour
         } else if(Input.GetButtonUp("Crouch"))
         {
             crouch= false;
-        } else if(Input.GetKeyDown(KeyCode.LeftShift))
+        } 
+        if(Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (runSpeed> 40f){
-                runSpeed = 40f;
-            }else {
-                runSpeed = 250f;
-                Invoke("stopdash", dashtime); 
-            }
-            
+            animator.SetBool("Isdashing", true);
+            runSpeed = 250f;
+           Invoke("stopdash", dashtime);   
         } 
     }
     void stopdash()
     {
         runSpeed = 40f;
+        animator.SetBool("Isdashing", false);
+
     }
     public void OnLanding()
     {
