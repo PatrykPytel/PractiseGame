@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
             animator.SetBool("Isdashing", true);
+            animator.SetBool("IsJumping", false);
             runSpeed = 250f;
            Invoke("stopdash", dashtime);   
         } 
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         runSpeed = 40f;
         animator.SetBool("Isdashing", false);
+        animator.SetBool("IsJumping",true);
 
     }
     public void OnLanding()

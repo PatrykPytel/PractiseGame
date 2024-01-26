@@ -20,6 +20,7 @@ public class CharacterController2D : MonoBehaviour
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
+	public Animator animator;
 
 	[Header("Events")]
 	[Space]
@@ -131,6 +132,12 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_Grounded = true;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+		}
+		if (m_Grounded){
+			animator.SetBool("onfloor", true);
+		}
+		else {
+			animator.SetBool("onfloor", false);
 		}
 	}
 
