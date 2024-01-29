@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     bool jump= false;
     bool crouch =false;
     public float dashtime=0.5f;
+    public float cooldown;
+    private float timepassed;
 
     // Update is called once per frame
     void Update()
@@ -30,14 +32,20 @@ public class PlayerMovement : MonoBehaviour
         } else if(Input.GetButtonUp("Crouch"))
         {
             crouch= false;
-        } 
-        if(Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            animator.SetBool("Isdashing", true);
-            animator.SetBool("IsJumping", false);
-            runSpeed = 250f;
-           Invoke("stopdash", dashtime);   
-        } 
+        }
+        if (timepassed <= 0) {  
+            if(Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                timepassed =cooldown;
+                animator.SetBool("Isdashing", true);
+                animator.SetBool("IsJumping", false);
+                runSpeed = 250f;
+            Invoke("stopdash", dashtime);   
+            } 
+        }
+        else { 
+            timepassed -= Time.deltaTime;
+        }
     }
     void stopdash()
     {

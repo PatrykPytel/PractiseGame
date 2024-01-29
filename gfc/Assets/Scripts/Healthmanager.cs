@@ -11,6 +11,7 @@ public class Healthmanager : MonoBehaviour
     public Sprite pelneserce;
     public Sprite pusteserce;
     public bool enemyIsClose;
+    public int points;
     [SerializeField] private float niesmiertelnosc;
     [SerializeField] private float lflashy;
     [SerializeField] private float damage;
@@ -76,6 +77,7 @@ public class Healthmanager : MonoBehaviour
 
 
     } 
+
 
     
 }

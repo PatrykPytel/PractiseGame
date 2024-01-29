@@ -7,10 +7,13 @@ public class CameraShake : MonoBehaviour
     public static CameraShake Myinstance;
     public AnimationCurve curve;
     public float ShakeTime = 1f;
-    
+    public GameObject player;
+    public float cooldown;
     void Update() {
-        if(Input.GetKeyDown(KeyCode.Mouse0)) {
-            StartCoroutine(Shake());
+        if(player.GetComponent<Attacking>().timepassed>=cooldown) {
+            if(Input.GetKeyDown(KeyCode.Mouse0)) {
+                StartCoroutine(Shake());
+            }
         }
     }
     private void Awake() {

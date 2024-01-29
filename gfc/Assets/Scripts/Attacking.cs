@@ -10,30 +10,33 @@ public class Attacking : MonoBehaviour
     public LayerMask whatisEnemies;
     public bool enemyIsClose;
     public GameObject Monster;
-
+    public float cooldown;
+    public float timepassed=0;
     // Start is called before the first frame update
-    void Start() {
-    }
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0) ) 
-        {
-            animator.SetBool("Isattacking", true);
-            Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
-            for (int i = 0; i < enemiesToDamage.Length; i++)
-            {   
-                Monster.GetComponent<EnemyHealth>().monsterhurt();
+        if (timepassed <= 0) {      
+            if(Input.GetKeyDown(KeyCode.Mouse0) ) 
+            {
+                timepassed = cooldown;
+                animator.SetBool("Isattacking", true);
+                Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
+                for (int i = 0; i < enemiesToDamage.Length; i++)
+                {   
+                    Monster.GetComponent<EnemyHealth>().monsterhurt();
+                }
             }
         }
         else
         {
             animator.SetBool("Isattacking", false);
+            timepassed -=  Time.deltaTime;
         }
     }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
-    }
-
+    }    
 }
