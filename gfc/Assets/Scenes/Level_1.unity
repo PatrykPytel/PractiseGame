@@ -1528,7 +1528,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2666f16df75fb264fa39c00a4abe9c5a, type: 3}
   m_Name: 
@@ -1539,17 +1539,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.99642944
-      inSlope: -2.1443713
-      outSlope: -2.1443713
+      inSlope: -0.059810355
+      outSlope: -0.059810355
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.2310778
-      value: 0.50091285
-      inSlope: -0.17803681
-      outSlope: -0.17803681
+      time: 0.18015923
+      value: 0.98565406
+      inSlope: 0.0059567764
+      outSlope: 0.0059567764
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.30913907
+      value: 0.994905
+      inSlope: 0.01965824
+      outSlope: 0.01965824
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1557,17 +1566,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.5037864
       value: 0.988597
-      inSlope: 0.6140681
-      outSlope: 0.6140681
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.70232755
-      value: 0.87738186
-      inSlope: 0.05651802
-      outSlope: 0.05651802
+      inSlope: -0.023474367
+      outSlope: -0.023474367
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1575,8 +1575,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.8598409
       value: 0.9834195
-      inSlope: 0.38301018
-      outSlope: 0.38301018
+      inSlope: 0.039140776
+      outSlope: 0.039140776
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

@@ -10,10 +10,13 @@ public class Attacking : MonoBehaviour
     public LayerMask whatisEnemies;
     public bool enemyIsClose;
     public GameObject Monster;
+
     // Start is called before the first frame update
+    void Start() {
+    }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0) ) 
         {
             animator.SetBool("Isattacking", true);
             Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
