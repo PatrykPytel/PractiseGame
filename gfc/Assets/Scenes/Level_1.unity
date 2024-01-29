@@ -378,7 +378,7 @@ MonoBehaviour:
   mhp: 6
   Monster: {fileID: 40210435}
   animator: {fileID: 40210443}
-  dyinganim: 0.49
+  dyinganim: 1.2
 --- !u!95 &40210443
 Animator:
   serializedVersion: 5
