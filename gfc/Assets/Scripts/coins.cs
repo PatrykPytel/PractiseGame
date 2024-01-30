@@ -10,8 +10,8 @@ public class coins : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player") {
-            canvas.GetComponent<ScoreManager>().Score();
             Destroy(coin);
+            canvas.GetComponent<ScoreManager>().Score();
         }
     }
 }

@@ -8,7 +8,9 @@ public class EndofGame : MonoBehaviour
 {
     [SerializeField] private Healthmanager Zycie;
     public static bool YouDied = false;
-    public GameObject GameOverUI;  
+    public GameObject GameOverUI; 
+    public GameObject ItemUI;
+    [SerializeField] private Openchest skrzynia; 
     // Start is called before the first frame update
 
     // Update is called once per frame
@@ -17,6 +19,10 @@ public class EndofGame : MonoBehaviour
         if (Zycie.health==0)
         {
             Pause();
+            
+        }
+        if(skrzynia.opened==true)
+        {
             
         }
 
@@ -36,11 +42,16 @@ public class EndofGame : MonoBehaviour
         YouDied = true;
 
     }
+    void Chestopened() {
+        ItemUI.SetActive(true);
+
+    } 
     public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu");
         
 
     }
+    
 }
 
