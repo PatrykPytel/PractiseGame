@@ -24,6 +24,8 @@ public class EndofGame : MonoBehaviour
         if(skrzynia.opened==true)
        {
             Chestopened();     
+       }else {
+        Closethechest();
        }
 
     }
@@ -46,6 +48,9 @@ public class EndofGame : MonoBehaviour
         ItemUI.SetActive(true);
 
     } 
+    public void Closethechest() { 
+        ItemUI.SetActive(false);
+    }
     public void LoadMenu()
     {
         SceneManager.LoadScene("MainMenu");

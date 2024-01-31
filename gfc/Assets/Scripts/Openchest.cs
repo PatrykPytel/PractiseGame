@@ -15,12 +15,10 @@ public class Openchest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((isclose == true) && (Input.GetKeyDown(KeyCode.E))) {
+        if((isclose == true) && (Input.GetKeyDown(KeyCode.E)) && (opened == false)) {
             opened = true;
         }else if(opened == true && Input.GetKeyDown(KeyCode.E)) {
             opened = false;
-        } else if(isclose == false) {
-           opened = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D coll) {
