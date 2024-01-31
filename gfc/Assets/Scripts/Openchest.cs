@@ -18,9 +18,9 @@ public class Openchest : MonoBehaviour
         if((isclose == true) && (Input.GetKeyDown(KeyCode.E))) {
             opened = true;
         }else if(opened == true && Input.GetKeyDown(KeyCode.E)) {
-            opened == false;
+            opened = false;
         } else if(isclose == false) {
-            opened == false;
+           opened = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D coll) {

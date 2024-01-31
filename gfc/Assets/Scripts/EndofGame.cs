@@ -22,9 +22,9 @@ public class EndofGame : MonoBehaviour
             
         }
         if(skrzynia.opened==true)
-        {
-            
-        }
+       {
+            Chestopened();     
+       }
 
     }
     void Resume()
