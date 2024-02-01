@@ -20,11 +20,6 @@ public class PlayerMovement : MonoBehaviour
     public float mnoznikspeed;
     private float startspeed;
 
-    public bool isWallSliding;
-    private float WallSlidingSpeed = 10f;
-
-    [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private Transform wallCheck;
  
 
     // Update is called once per frame
@@ -55,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         else { 
             timepassed -= Time.deltaTime;
         }
-        WallSlide();
+    
     
     }
     void stopdash()
@@ -81,17 +76,5 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Notattacking() {
         runSpeed = startspeed ;
-    }
-
-    private bool IsWalled() { 
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
-    }
-    private void WallSlide() { 
-        if (IsWalled() && !controller.m_Grounded && horizontalMove != 0f) { 
-            isWallSliding = true;
-            controller.m_Rigidbody2D.velocity = new Vector2(controller.m_Rigidbody2D.velocity.x, Mathf.Clamp(controller.m_Rigidbody2D.velocity.y, -WallSlidingSpeed, float.MaxValue ));
-        } else { 
-            isWallSliding = false;
-        }
     }
 }

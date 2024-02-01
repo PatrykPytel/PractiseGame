@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharacterController2D : MonoBehaviour
+public class Finalmovement : MonoBehaviour
 {
-	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
-				// Amount of maxSpeed applied to crouching movement. 1 = 100%
-	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
+    [SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
@@ -19,8 +17,21 @@ public class CharacterController2D : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	public Animator animator;
 
+    public float runSpeed=40f;
+    float  horizontalMove =0f;
 
-	[Header("Events")]
+    bool jump= false;
+
+    public float dashtime=0.5f;
+
+    public float cooldown;
+    private float timepassed;
+
+    public float mnoznikspeed;
+    private float startspeed;
+
+    // Start is called before the first frame update
+    [Header("Events")]
 	[Space]
 
 	public UnityEvent OnLandEvent;
@@ -32,8 +43,11 @@ public class CharacterController2D : MonoBehaviour
 			OnLandEvent = new UnityEvent();
 	}
 
-	private void FixedUpdate()
+    private void FixedUpdate()
 	{
+        Move(horizontalMove * Time.fixedDeltaTime, jump);
+        jump= false;
+
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);	// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -47,14 +61,31 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 	}
+    private void Flip()
+	{
+		m_FacingRight = !m_FacingRight; 		// Switch the way the player is labelled as facing.
+		Vector3 theScale = transform.localScale;  	// Multiply the player's x local scale by -1.
+		theScale.x *= -1;
+		transform.localScale = theScale;
+	}
+    void stopdash()
+    {
+        runSpeed = runSpeed/mnoznikspeed;
+        animator.SetBool("Isdashing", false);
+        animator.SetBool("IsJumping",true);
 
+    }
+    public void OnLanding()
+    {
+        animator.SetBool("IsJumping", false);
+    }
 
 	public void Move(float move, bool jump)
 	{
 		if (m_Grounded || m_AirControl) 		//only control the player if grounded or airControl is turned on
 		{
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y); 		// Move the character by finding the target velocity
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing); 	// And then smoothing it out and applying it to the character
+			//m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing); 	// And then smoothing it out and applying it to the character
 
 			if (move > 0 && !m_FacingRight) 			// If the input is moving the player right and the player is facing left...
 			{
@@ -77,11 +108,37 @@ public class CharacterController2D : MonoBehaviour
 			animator.SetBool("onfloor", false);
 		}
 	}
-	private void Flip()
-	{
-		m_FacingRight = !m_FacingRight; 		// Switch the way the player is labelled as facing.
-		Vector3 theScale = transform.localScale;  	// Multiply the player's x local scale by -1.
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
+
+
+    void Start()
+    {
+        startspeed = runSpeed;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
+        horizontalMove = Input.GetAxisRaw("Horizontal")* runSpeed;
+        if(Input.GetButtonDown("Jump"))
+        {
+            jump =true;
+            animator.SetBool("IsJumping",true);
+        } 
+        if (timepassed <= 0) {  
+            if(Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                timepassed =cooldown;
+                animator.SetBool("Isdashing", true);
+                animator.SetBool("IsJumping", false);
+                runSpeed = runSpeed * mnoznikspeed;
+            Invoke("stopdash", dashtime);   
+            } 
+        }
+        else { 
+            timepassed -= Time.deltaTime;
+        }
+        
+    }
 }
