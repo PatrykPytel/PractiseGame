@@ -5,19 +5,29 @@ using UnityEngine.Events;
 
 public class Finalmovement : MonoBehaviour
 {
-    private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
+    private float m_JumpForce = 20f;							// Amount of force added when the player jumps.
 	//[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
-	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
+	[SerializeField] private Transform m_GroundCheck;	
+	[SerializeField] private Transform wallCheck;
+	[SerializeField] private LayerMask wallLayer;	
+	[SerializeField] private Rigidbody2D rb;					// A position marking where to check if the player is grounded.
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	public bool m_Grounded;            // Whether or not the player is grounded.
-	private Rigidbody2D rb;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-	private Vector3 m_Velocity = Vector3.zero;
+	//private Vector3 m_Velocity = Vector3.zero;
 	public Animator animator;
 
     public float runSpeed=40f;
     float  horizontalMove;
+	private float slidingspeed = 2f;
+	private bool isWallSliding;
+	private bool isWallJumping;
+	private float wallJumpingDirection;
+	private float wallJumpingTime =0.2f;
+	private float wallJumpingCounter;
+	private float wallJumpingDuration = 0.4f;
+	private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 
     //bool jump= false;
 
@@ -36,7 +46,6 @@ public class Finalmovement : MonoBehaviour
 	public UnityEvent OnLandEvent;
 	private void Awake()
 	{
-		rb = GetComponent<Rigidbody2D>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -87,37 +96,6 @@ public class Finalmovement : MonoBehaviour
     {
         animator.SetBool("IsJumping", false);
     }
-
-	//public void Move(float move, bool jump)
-	//{
-	//	if (m_Grounded || m_AirControl) 		//only control the player if grounded or airControl is turned on
-	//	{
-			//Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y); 		// Move the character by finding the target velocity
-			//m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing); 	// And then smoothing it out and applying it to the character
-
-			//if (move > 0 && !m_FacingRight) 			// If the input is moving the player right and the player is facing left...
-		//	{
-		//		Flip();
-		//	}
-		//	else if (move < 0 && m_FacingRight) 		// Otherwise if the input is moving the player left and the player is facing right...
-		//	{
-		//		Flip();
-		//	}
-		//}
-	//	if (m_Grounded && jump) 		// If the player should jump...
-	//	{
-	//		m_Grounded = true; 			// Add a vertical force to the player.
-	//		m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce)); 
-	//	}
-	//	if (m_Grounded){
-		//	animator.SetBool("onfloor", true);
-	//	}
-//else {
-	//		animator.SetBool("onfloor", false);
-//}
-//	}
-
-
     void Start()
     {
         startspeed = runSpeed;
@@ -150,9 +128,50 @@ public class Finalmovement : MonoBehaviour
         else { 
             timepassed -= Time.deltaTime;
         }
-		Flip();
+		WallSlide();
+		WallJump();
+		if (!isWallJumping) { 
+			Flip();
+		}
         
     }
+	private bool IsWalled() { 
+		return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+	}
+	private void WallSlide() {
+		isWallSliding = true;
+		if (IsWalled() && !m_Grounded && horizontalMove != 0f) { 
+		rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -slidingspeed, float.MaxValue));
+		}else { 
+			isWallSliding= false;
+		}
+	}
+	private void WallJump() { 
+		if ( isWallSliding) { 
+			isWallJumping = false;
+			wallJumpingDirection = -transform.localScale.x;
+			wallJumpingCounter = wallJumpingTime;
+			CancelInvoke(nameof(StopWallJumping));
+		} else { 
+			wallJumpingCounter -= Time.deltaTime;
+		}
+		if (Input.GetButtonDown("Jump") && wallJumpingCounter> 0f) { 
+			isWallJumping = true;
+			rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+			wallJumpingCounter = 0f;
+
+			if(transform.localScale.x != wallJumpingDirection) { 
+				m_FacingRight = !m_FacingRight;
+				Vector3 localScale = transform.localScale;
+				localScale.x *= -1f;
+				transform.localScale = localScale;
+			}
+			Invoke(nameof(StopWallJumping), wallJumpingDuration);
+		}
+	}
+	private void StopWallJumping() { 
+		isWallJumping = false;
+	}
 }
 	//public void Move(float move, bool jump)
 	//{

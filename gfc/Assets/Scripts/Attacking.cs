@@ -23,7 +23,6 @@ public class Attacking : MonoBehaviour
             {
                 timepassed = cooldown;
                 animator.SetBool("Isattacking", true);
-                player.GetComponent<PlayerMovement>().Attackmovement();
                 Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {   
@@ -34,7 +33,6 @@ public class Attacking : MonoBehaviour
         else
         {
             animator.SetBool("Isattacking", false);
-            Invoke("Startmoving", time);
             timepassed -=  Time.deltaTime;
         }
     }
@@ -43,7 +41,4 @@ public class Attacking : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
-    void Startmoving()  { 
-        player.GetComponent<PlayerMovement>().Notattacking();
-    }  
 }
