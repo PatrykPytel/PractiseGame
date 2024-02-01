@@ -5,22 +5,21 @@ using UnityEngine.Events;
 
 public class Finalmovement : MonoBehaviour
 {
-    [SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
-	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
+    private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
+	//[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	public bool m_Grounded;            // Whether or not the player is grounded.
-	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
-	private Rigidbody2D m_Rigidbody2D;
+	private Rigidbody2D rb;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 	public Animator animator;
 
     public float runSpeed=40f;
-    float  horizontalMove =0f;
+    float  horizontalMove;
 
-    bool jump= false;
+    //bool jump= false;
 
     public float dashtime=0.5f;
 
@@ -37,7 +36,7 @@ public class Finalmovement : MonoBehaviour
 	public UnityEvent OnLandEvent;
 	private void Awake()
 	{
-		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		rb = GetComponent<Rigidbody2D>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -45,8 +44,9 @@ public class Finalmovement : MonoBehaviour
 
     private void FixedUpdate()
 	{
-        Move(horizontalMove * Time.fixedDeltaTime, jump);
-        jump= false;
+       // Move(horizontalMove * Time.fixedDeltaTime, jump);
+	   rb.velocity = new Vector2(horizontalMove * runSpeed, rb.velocity.y);
+       // jump= false;
 
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
@@ -60,13 +60,21 @@ public class Finalmovement : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
+		if (m_Grounded){
+			animator.SetBool("onfloor", true);
+		}
+		else {
+			animator.SetBool("onfloor", false);
+		}
 	}
     private void Flip()
 	{
-		m_FacingRight = !m_FacingRight; 		// Switch the way the player is labelled as facing.
-		Vector3 theScale = transform.localScale;  	// Multiply the player's x local scale by -1.
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		if(m_FacingRight &&  horizontalMove <0f ||!m_FacingRight && horizontalMove > 0f) {
+			m_FacingRight = !m_FacingRight; 		// Switch the way the player is labelled as facing.
+			Vector3 theScale = transform.localScale;  	// Multiply the player's x local scale by -1.
+			theScale.x *= -1;
+			transform.localScale = theScale;			
+		}
 	}
     void stopdash()
     {
@@ -80,34 +88,34 @@ public class Finalmovement : MonoBehaviour
         animator.SetBool("IsJumping", false);
     }
 
-	public void Move(float move, bool jump)
-	{
-		if (m_Grounded || m_AirControl) 		//only control the player if grounded or airControl is turned on
-		{
-			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y); 		// Move the character by finding the target velocity
+	//public void Move(float move, bool jump)
+	//{
+	//	if (m_Grounded || m_AirControl) 		//only control the player if grounded or airControl is turned on
+	//	{
+			//Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y); 		// Move the character by finding the target velocity
 			//m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing); 	// And then smoothing it out and applying it to the character
 
-			if (move > 0 && !m_FacingRight) 			// If the input is moving the player right and the player is facing left...
-			{
-				Flip();
-			}
-			else if (move < 0 && m_FacingRight) 		// Otherwise if the input is moving the player left and the player is facing right...
-			{
-				Flip();
-			}
-		}
-		if (m_Grounded && jump) 		// If the player should jump...
-		{
-			m_Grounded = true; 			// Add a vertical force to the player.
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce)); 
-		}
-		if (m_Grounded){
-			animator.SetBool("onfloor", true);
-		}
-		else {
-			animator.SetBool("onfloor", false);
-		}
-	}
+			//if (move > 0 && !m_FacingRight) 			// If the input is moving the player right and the player is facing left...
+		//	{
+		//		Flip();
+		//	}
+		//	else if (move < 0 && m_FacingRight) 		// Otherwise if the input is moving the player left and the player is facing right...
+		//	{
+		//		Flip();
+		//	}
+		//}
+	//	if (m_Grounded && jump) 		// If the player should jump...
+	//	{
+	//		m_Grounded = true; 			// Add a vertical force to the player.
+	//		m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce)); 
+	//	}
+	//	if (m_Grounded){
+		//	animator.SetBool("onfloor", true);
+	//	}
+//else {
+	//		animator.SetBool("onfloor", false);
+//}
+//	}
 
 
     void Start()
@@ -120,12 +128,15 @@ public class Finalmovement : MonoBehaviour
     {
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        horizontalMove = Input.GetAxisRaw("Horizontal")* runSpeed;
-        if(Input.GetButtonDown("Jump"))
+        horizontalMove = Input.GetAxisRaw("Horizontal");
+        if(Input.GetButtonDown("Jump") && m_Grounded)
         {
-            jump =true;
+            rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
             animator.SetBool("IsJumping",true);
         } 
+		if (Input.GetButtonUp("Jump") && rb.velocity.y >0f) { 
+			rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+		}
         if (timepassed <= 0) {  
             if(Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -139,6 +150,35 @@ public class Finalmovement : MonoBehaviour
         else { 
             timepassed -= Time.deltaTime;
         }
+		Flip();
         
     }
 }
+	//public void Move(float move, bool jump)
+	//{
+	//	if (m_Grounded || m_AirControl) 		//only control the player if grounded or airControl is turned on
+	//	{
+			//Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y); 		// Move the character by finding the target velocity
+			//m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing); 	// And then smoothing it out and applying it to the character
+
+			//if (move > 0 && !m_FacingRight) 			// If the input is moving the player right and the player is facing left...
+		//	{
+		//		Flip();
+		//	}
+		//	else if (move < 0 && m_FacingRight) 		// Otherwise if the input is moving the player left and the player is facing right...
+		//	{
+		//		Flip();
+		//	}
+		//}
+	//	if (m_Grounded && jump) 		// If the player should jump...
+	//	{
+	//		m_Grounded = true; 			// Add a vertical force to the player.
+	//		m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce)); 
+	//	}
+	//	if (m_Grounded){
+		//	animator.SetBool("onfloor", true);
+	//	}
+//else {
+	//		animator.SetBool("onfloor", false);
+//}
+//	}
