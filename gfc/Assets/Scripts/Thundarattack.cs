@@ -11,7 +11,7 @@ public class Thundarattack : MonoBehaviour
     void Update()
     {
         if(player.GetComponent<Attacking>().timepassed>=cooldown) {
-            if(Input.GetKeyDown(KeyCode.Mouse0))
+            if(Input.GetKeyDown(KeyCode.Q))
             {
                 animator.SetBool("attack", true);
             }

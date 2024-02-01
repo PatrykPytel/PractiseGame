@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attacking : MonoBehaviour
 {
+    public GameObject player;
     public Animator animator;
     public Transform attackPos;
     public float attackRange;
@@ -12,15 +13,17 @@ public class Attacking : MonoBehaviour
     public GameObject Monster;
     public float cooldown;
     public float timepassed=0;
+    public float time;
     // Start is called before the first frame update
 
     void Update()
     {
         if (timepassed <= 0) {      
-            if(Input.GetKeyDown(KeyCode.Mouse0) ) 
+            if(Input.GetKeyDown(KeyCode.Q) ) 
             {
                 timepassed = cooldown;
                 animator.SetBool("Isattacking", true);
+                player.GetComponent<PlayerMovement>().Attackmovement();
                 Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {   
@@ -31,6 +34,7 @@ public class Attacking : MonoBehaviour
         else
         {
             animator.SetBool("Isattacking", false);
+            Invoke("Startmoving", time);
             timepassed -=  Time.deltaTime;
         }
     }
@@ -38,5 +42,8 @@ public class Attacking : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
-    }    
+    }
+    void Startmoving()  { 
+        player.GetComponent<PlayerMovement>().Notattacking();
+    }  
 }
