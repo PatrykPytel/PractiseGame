@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Finalmovement : MonoBehaviour
 {
-    private float m_JumpForce = 20f;							// Amount of force added when the player jumps.
+    public float m_JumpForce = 20f;							// Amount of force added when the player jumps.
 	//[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;	
@@ -173,31 +173,3 @@ public class Finalmovement : MonoBehaviour
 		isWallJumping = false;
 	}
 }
-	//public void Move(float move, bool jump)
-	//{
-	//	if (m_Grounded || m_AirControl) 		//only control the player if grounded or airControl is turned on
-	//	{
-			//Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y); 		// Move the character by finding the target velocity
-			//m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing); 	// And then smoothing it out and applying it to the character
-
-			//if (move > 0 && !m_FacingRight) 			// If the input is moving the player right and the player is facing left...
-		//	{
-		//		Flip();
-		//	}
-		//	else if (move < 0 && m_FacingRight) 		// Otherwise if the input is moving the player left and the player is facing right...
-		//	{
-		//		Flip();
-		//	}
-		//}
-	//	if (m_Grounded && jump) 		// If the player should jump...
-	//	{
-	//		m_Grounded = true; 			// Add a vertical force to the player.
-	//		m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce)); 
-	//	}
-	//	if (m_Grounded){
-		//	animator.SetBool("onfloor", true);
-	//	}
-//else {
-	//		animator.SetBool("onfloor", false);
-//}
-//	}
