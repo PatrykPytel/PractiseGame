@@ -28,6 +28,7 @@ public class Finalmovement : MonoBehaviour
 	private float wallJumpingCounter;
 	private float wallJumpingDuration = 0.4f;
 	private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+	private bool noconstrains;
 
     //bool jump= false;
 
@@ -107,7 +108,7 @@ public class Finalmovement : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         horizontalMove = Input.GetAxisRaw("Horizontal");
-        if(Input.GetButtonDown("Jump") && m_Grounded)
+        if(Input.GetButtonDown("Jump") && m_Grounded && noconstrains == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, m_JumpForce);
             animator.SetBool("IsJumping",true);
@@ -122,7 +123,7 @@ public class Finalmovement : MonoBehaviour
                 animator.SetBool("Isdashing", true);
                 animator.SetBool("IsJumping", false);
                 runSpeed = runSpeed * mnoznikspeed;
-            Invoke("stopdash", dashtime);   
+            	Invoke("stopdash", dashtime);   
             } 
         }
         else { 
@@ -130,9 +131,10 @@ public class Finalmovement : MonoBehaviour
         }
 		WallSlide();
 		WallJump();
-		if (!isWallJumping) { 
+		if (!isWallJumping && noconstrains == true) { 
 			Flip();
 		}
+		
         
     }
 	private bool IsWalled() { 
@@ -171,5 +173,17 @@ public class Finalmovement : MonoBehaviour
 	}
 	private void StopWallJumping() { 
 		isWallJumping = false;
+	}
+	public void Stopmoving() { 
+//		runSpeed = 0f;
+//		m_JumpForce = 0f;
+//		animator.SetBool("IsJumping", false);
+		rb.constraints = RigidbodyConstraints2D.FreezeAll;
+		noconstrains = false;
+	}
+	public void Startmoving() { 
+		rb.constraints = RigidbodyConstraints2D.None;
+		rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+	 	noconstrains = true;
 	}
 }

@@ -14,13 +14,18 @@ public class Attacking : MonoBehaviour
     public float cooldown;
     public float timepassed=0;
     public float time;
-    // Start is called before the first frame update
+    public float attackduration;
 
-    void Update()
+    // Start is called before the first frame update
+    void Stopmovement() { 
+        player.GetComponent<Finalmovement>().Startmoving();
+    }
+     void Update()
     {
         if (timepassed <= 0) {      
             if(Input.GetKeyDown(KeyCode.Q) ) 
             {
+                player.GetComponent<Finalmovement>().Stopmoving();
                 timepassed = cooldown;
                 animator.SetBool("Isattacking", true);
                 Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
@@ -28,6 +33,7 @@ public class Attacking : MonoBehaviour
                 {   
                     Monster.GetComponent<EnemyHealth>().monsterhurt();
                 }
+                Invoke("Stopmovement", attackduration); 
             }
         }
         else
@@ -41,4 +47,5 @@ public class Attacking : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
+
 }
