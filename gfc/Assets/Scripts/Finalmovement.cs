@@ -28,7 +28,7 @@ public class Finalmovement : MonoBehaviour
 	private float wallJumpingCounter;
 	private float wallJumpingDuration = 0.4f;
 	private Vector2 wallJumpingPower = new Vector2(8f, 16f);
-	private bool noconstrains;
+	private bool noconstrains = true;
 
     //bool jump= false;
 
@@ -90,7 +90,7 @@ public class Finalmovement : MonoBehaviour
     {
         runSpeed = runSpeed/mnoznikspeed;
         animator.SetBool("Isdashing", false);
-        animator.SetBool("IsJumping",true);
+ //       animator.SetBool("IsJumping",true);
 
     }
     public void OnLanding()
