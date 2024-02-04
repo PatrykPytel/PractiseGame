@@ -27,7 +27,7 @@ public class Attacking : MonoBehaviour
             {
                 player.GetComponent<Finalmovement>().Stopmoving();
                 timepassed = cooldown;
-                animator.SetBool("Isattacking", true);
+                animator.SetBool("abilityattack", true);
                 Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {   
@@ -38,7 +38,7 @@ public class Attacking : MonoBehaviour
         }
         else
         {
-            animator.SetBool("Isattacking", false);
+            animator.SetBool("abilityattack", false);
             timepassed -=  Time.deltaTime;
         }
     }
