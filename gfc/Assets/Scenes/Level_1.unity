@@ -301,7 +301,8 @@ Transform:
   m_LocalPosition: {x: -2.11, y: -8.24, z: 0.99861556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 809130941}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -346,6 +347,10 @@ MonoBehaviour:
   pointA: {fileID: 236041972}
   pointB: {fileID: 1852943377}
   speed: 6
+  m_GroundCheck: {fileID: 809130941}
+  m_WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!50 &40210441
 Rigidbody2D:
   serializedVersion: 4
@@ -358,10 +363,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -488,7 +493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108751029}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.419999, y: 5.6667, z: 1}
+  m_LocalPosition: {x: -15.77, y: 5.6667, z: 1}
   m_LocalScale: {x: 1, y: 0.9738, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -497,6 +502,7 @@ Transform:
   - {fileID: 1334796006}
   - {fileID: 374603202}
   - {fileID: 1858929032}
+  - {fileID: 941324543}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -589,7 +595,6 @@ MonoBehaviour:
   whatisEnemies:
     serializedVersion: 2
     m_Bits: 2048
-  enemyIsClose: 0
   Monster: {fileID: 40210435}
   cooldown: 1.5
   timepassed: 0
@@ -677,6 +682,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 108751037}
+  attackPos: {fileID: 941324543}
+  attackRange: 0.81
+  whatisEnemies:
+    serializedVersion: 2
+    m_Bits: 2048
+  Monster: {fileID: 40210435}
 --- !u!1 &111133362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,6 +2477,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &809130940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 809130941}
+  m_Layer: 11
+  m_Name: groundcheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &809130941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809130940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 40210438}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &818105995
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,6 +2891,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1782708862}
   score: 0
+--- !u!1 &941324542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 941324543}
+  m_Layer: 10
+  m_Name: AttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &941324543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941324542}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.24, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 108751032}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1036163700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4529055965372673349, guid: 8e492425346013f4aa565c0a0ba951c0, type: 3}
@@ -3257,7 +3330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1334796006}
   m_Layer: 10
-  m_Name: AttackPos
+  m_Name: AbilityPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

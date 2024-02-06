@@ -14,7 +14,10 @@ public class EnemyPatrol : MonoBehaviour
     private bool isattacked=false;
     private float JumpForce = 2f;
     private int scale =1;
-    
+    private bool grounded;
+    [SerializeField] private Transform m_GroundCheck;
+    [SerializeField] private LayerMask m_WhatIsGround;
+    const float k_GroundedRadius = .2f;
 
     void Start()
     {
@@ -28,21 +31,23 @@ public class EnemyPatrol : MonoBehaviour
     void Update()
     {
         Vector2 point = currentPoint.position - transform.position;
-        if(currentPoint==pointB.transform)
-        {
-            rb.velocity = new Vector2(-speed, 0);
-        }else
-        {
-           //Knockback(); 
-           // rb.velocity = new Vector2(10f, JumpForce);
-            rb.velocity = new Vector2(speed,0);
+        if(grounded) { 
+            if(currentPoint==pointB.transform)
+            {
+                rb.velocity = new Vector2(-speed, 0);
+            }else
+            {
+                rb.velocity = new Vector2(speed,0);
+            }
         }
         if(isattacked && scale == 1) { 
-            rb.velocity = new Vector2(10f, JumpForce);
-//./Invoke("stopknockback",1f);
+            rb.velocity = new Vector2(8f, JumpForce);
+            Invoke("stopknockback",0.5f);
+          //  rb.velocity = new Vector2(-speed,0);
         } else if(isattacked && scale ==-1){ 
-            rb.velocity = new Vector2(-10f, JumpForce);
-           // Invoke("stopknockback",1f);
+            rb.velocity = new Vector2(-8f, JumpForce);
+            Invoke("stopknockback",0.5f);
+           // rb.velocity = new Vector2(speed, 0);
         }
         if (Vector2.Distance(transform.position, currentPoint.position)<0.5f && currentPoint==pointB.transform)
         {
@@ -58,6 +63,23 @@ public class EnemyPatrol : MonoBehaviour
         }
 
     }
+    private void FixedUpdate()
+	{
+       // Move(horizontalMove * Time.fixedDeltaTime, jump);
+	 //  rb.velocity = new Vector2(horizontalMove * runSpeed, rb.velocity.y);
+       // jump= false;
+
+		bool wasGrounded = grounded;
+		grounded = false;
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);	// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+		for (int i = 0; i < colliders.Length; i++) // This can be done using layers instead but Sample Assets will not overwrite your project settings.
+		{
+			if (colliders[i].gameObject != gameObject)
+			{
+				grounded = true;
+			}
+		}
+	}
     private void Flip()
 	{
 		
