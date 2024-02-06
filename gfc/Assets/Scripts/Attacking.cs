@@ -9,7 +9,7 @@ public class Attacking : MonoBehaviour
     public Transform attackPos;
     public float attackRange;
     public LayerMask whatisEnemies;
-    public bool enemyIsClose;
+   // public bool enemyIsClose;
     public GameObject Monster;
     public float cooldown;
     public float timepassed=0;
@@ -17,7 +17,7 @@ public class Attacking : MonoBehaviour
     public float attackduration;
 
     // Start is called before the first frame update
-    void Stopmovement() { 
+    void Startmovement() { 
         player.GetComponent<Finalmovement>().Startmoving();
     }
      void Update()
@@ -33,7 +33,7 @@ public class Attacking : MonoBehaviour
                 {   
                     Monster.GetComponent<EnemyHealth>().monsterhurt();
                 }
-                Invoke("Stopmovement", attackduration); 
+                Invoke("Startmovement", attackduration); 
             }
         }
         else

@@ -11,6 +11,9 @@ public class EnemyPatrol : MonoBehaviour
     private Transform currentPoint;
     private Animator anim;
     public float speed;
+    private bool isattacked=false;
+    private float JumpForce = 2f;
+    private int scale =1;
     
 
     void Start()
@@ -30,7 +33,16 @@ public class EnemyPatrol : MonoBehaviour
             rb.velocity = new Vector2(-speed, 0);
         }else
         {
+           //Knockback(); 
+           // rb.velocity = new Vector2(10f, JumpForce);
             rb.velocity = new Vector2(speed,0);
+        }
+        if(isattacked && scale == 1) { 
+            rb.velocity = new Vector2(10f, JumpForce);
+//./Invoke("stopknockback",1f);
+        } else if(isattacked && scale ==-1){ 
+            rb.velocity = new Vector2(-10f, JumpForce);
+           // Invoke("stopknockback",1f);
         }
         if (Vector2.Distance(transform.position, currentPoint.position)<0.5f && currentPoint==pointB.transform)
         {
@@ -54,6 +66,16 @@ public class EnemyPatrol : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+        scale *= -1;
 	}
+    public void Knockback() { 
+//       rb.velocity = new Vector2(10f, JumpForce);
+        isattacked = true;
+        //rb.constraints = RigidbodyConstraints2D.None;
+       // Debug.Log("sDad");
+    }
+    void stopknockback() { 
+        isattacked = false;
+    }
 
 }

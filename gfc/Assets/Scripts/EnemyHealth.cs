@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     private bool die;
     public float dyinganim;
     private Rigidbody2D rb;
+    public GameObject monster;
     // Start is called before the first frame update
     // Update is called once per frame
     void Start() 
@@ -20,7 +21,11 @@ public class EnemyHealth : MonoBehaviour
     }
     public void monsterhurt()
     {
+        mhp -=2;
+    }
+    public void monsterattacked() { 
         mhp -=1;
+        monster.GetComponent<EnemyPatrol>().Knockback();
     }
     void Update()
     {
