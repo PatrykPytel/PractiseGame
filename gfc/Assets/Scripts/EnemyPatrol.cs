@@ -11,6 +11,7 @@ public class EnemyPatrol : MonoBehaviour
     private Transform currentPoint;
     private Animator anim;
     public float speed;
+    private float startspeed;
     private bool isattacked=false;
     private float JumpForce = 2f;
     private int scale =1;
@@ -21,6 +22,7 @@ public class EnemyPatrol : MonoBehaviour
 
     void Start()
     {
+        startspeed = speed;
         rb = GetComponent<Rigidbody2D>();
         //anim = GetComponent<Animator>();
         currentPoint =pointB.transform;
@@ -98,6 +100,13 @@ public class EnemyPatrol : MonoBehaviour
     }
     void stopknockback() { 
         isattacked = false;
+    }
+    public void Speedfreeze() { 
+        speed = 0;
+        Invoke("RevertSpeedfreeze",0.5f);
+    }
+    void RevertSpeedfreeze() { 
+        speed = startspeed;
     }
 
 }

@@ -21,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
     public void monsterhurt()
     {
         mhp -=2;
+        Monster.GetComponent<EnemyPatrol>().Speedfreeze();
     }
     public void monsterattacked() { 
         mhp -=1;

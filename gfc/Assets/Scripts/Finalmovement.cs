@@ -11,7 +11,8 @@ public class Finalmovement : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;	
 	[SerializeField] private Transform wallCheck;
 	[SerializeField] private LayerMask wallLayer;	
-	[SerializeField] private Rigidbody2D rb;					// A position marking where to check if the player is grounded.
+	[SerializeField] public Rigidbody2D rb;		
+	[SerializeField] public GameObject player;			// A position marking where to check if the player is grounded.
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	public bool m_Grounded;            // Whether or not the player is grounded.
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -81,9 +82,9 @@ public class Finalmovement : MonoBehaviour
 	{
 		if(m_FacingRight &&  horizontalMove <0f ||!m_FacingRight && horizontalMove > 0f) {
 			m_FacingRight = !m_FacingRight; 		// Switch the way the player is labelled as facing.
-			Vector3 theScale = transform.localScale;  	// Multiply the player's x local scale by -1.
+			Vector3 theScale = player.transform.localScale;  	// Multiply the player's x local scale by -1.
 			theScale.x *= -1;
-			transform.localScale = theScale;			
+			player.transform.localScale = theScale;			
 		}
 	}
     void stopdash()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class basicattack : MonoBehaviour
 {
+    //[SerializeField] private Finalmovement speed;
     public Animator animator;
     private float comboTime =1f;
 	private float comboCounter;
@@ -16,7 +17,7 @@ public class basicattack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,10 +28,12 @@ public class basicattack : MonoBehaviour
                 animator.SetBool("2attack", true);
                 comboCounter = 0f;
                 cooldown =  1f;
+                //speed.rb.velocity = new Vector2(speed.runSpeed/2,speed.rb.velocity.y);
                 Attack();
             } else if(Input.GetKeyDown(KeyCode.Mouse0)) { 
                 animator.SetBool("isattacking", true);
                 comboCounter = comboTime;
+                //speed.rb.velocity = new Vector2(speed.runSpeed/2,speed.rb.velocity.y);
                 Attack();
             }
             else { 
@@ -52,6 +55,8 @@ public class basicattack : MonoBehaviour
         {   
             Monster.GetComponent<EnemyHealth>().monsterattacked();
         }
+       // speed.rb.velocity = new Vector2(speed.runSpeed/2,speed.rb.velocity.y);
+        //speed.runSpeed = speed.runSpeed/2;
     }
     void OnDrawGizmosSelected()
     {
