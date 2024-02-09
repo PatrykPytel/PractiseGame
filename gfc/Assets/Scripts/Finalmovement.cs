@@ -19,7 +19,7 @@ public class Finalmovement : MonoBehaviour
 	//private Vector3 m_Velocity = Vector3.zero;
 	public Animator animator;
 
-    public float runSpeed=40f;
+    public float runSpeed;
     float  horizontalMove;
 	private float slidingspeed = 2f;
 	private bool isWallSliding;
@@ -39,7 +39,7 @@ public class Finalmovement : MonoBehaviour
     private float timepassed;
 
     public float mnoznikspeed;
-    private float startspeed;
+    public float startspeed;
 
     // Start is called before the first frame update
     [Header("Events")]

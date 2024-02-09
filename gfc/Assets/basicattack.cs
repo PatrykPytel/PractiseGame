@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class basicattack : MonoBehaviour
 {
-    //[SerializeField] private Finalmovement speed;
+    [SerializeField] private Finalmovement speed;
     public Animator animator;
     private float comboTime =1f;
 	private float comboCounter;
@@ -28,11 +28,15 @@ public class basicattack : MonoBehaviour
                 animator.SetBool("2attack", true);
                 comboCounter = 0f;
                 cooldown =  1f;
+               // speed.runSpeed = 0f;
+             //   Invoke("Stopattack",1f);
                 //speed.rb.velocity = new Vector2(speed.runSpeed/2,speed.rb.velocity.y);
                 Attack();
             } else if(Input.GetKeyDown(KeyCode.Mouse0)) { 
                 animator.SetBool("isattacking", true);
                 comboCounter = comboTime;
+                //speed.runSpeed = 0f;
+              //  Invoke("Stopattack",1f);
                 //speed.rb.velocity = new Vector2(speed.runSpeed/2,speed.rb.velocity.y);
                 Attack();
             }
@@ -41,11 +45,12 @@ public class basicattack : MonoBehaviour
                 animator.SetBool("isattacking", false);
                 animator.SetBool("2attack",false);
             } 
-        } else { 
+        }else { 
             cooldown -= Time.deltaTime;
-            comboCounter-=Time.deltaTime;
+            comboCounter=0f;
             animator.SetBool("isattacking", false);
             animator.SetBool("2attack",false);
+            speed.runSpeed = speed.startspeed;
         }
         
     }
@@ -63,4 +68,5 @@ public class basicattack : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
+
 }
