@@ -33,6 +33,7 @@ public class EnemyHealth : MonoBehaviour
             animator.SetBool("isdead", true);
             rb.simulated = false;
             Invoke("monsterdead", dyinganim);
+
         }
         else if(mhp<previoushp) {
             animator.SetBool("strucked", true);

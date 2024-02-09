@@ -15,6 +15,7 @@ public class Attacking : MonoBehaviour
     public float timepassed=0;
     public float time;
     public float attackduration;
+    public int damage;
 
     // Start is called before the first frame update
     void Startmovement() { 
@@ -31,7 +32,7 @@ public class Attacking : MonoBehaviour
                 Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {   
-                    Monster.GetComponent<EnemyHealth>().monsterhurt();
+                    enemiesToDamage[i].GetComponent<EnemyHealth>().mhp -=damage;
                 }
                 Invoke("Startmovement", attackduration); 
             }

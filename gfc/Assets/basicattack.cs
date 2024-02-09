@@ -12,6 +12,7 @@ public class basicattack : MonoBehaviour
     public Transform attackPos;
     public float attackRange;
     public LayerMask whatisEnemies;
+    public int damage;
   //  public bool enemyIsClose;
     public GameObject Monster;
     // Start is called before the first frame update
@@ -28,9 +29,6 @@ public class basicattack : MonoBehaviour
                 animator.SetBool("2attack", true);
                 comboCounter = 0f;
                 cooldown =  1f;
-               // speed.runSpeed = 0f;
-             //   Invoke("Stopattack",1f);
-                //speed.rb.velocity = new Vector2(speed.runSpeed/2,speed.rb.velocity.y);
                 Attack();
             } else if(Input.GetKeyDown(KeyCode.Mouse0)) { 
                 animator.SetBool("isattacking", true);
@@ -52,14 +50,13 @@ public class basicattack : MonoBehaviour
             animator.SetBool("2attack",false);
             speed.runSpeed = speed.startspeed;
         }
-        
     }
     void Attack() { 
-        Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
-        for (int i = 0; i < enemiesToDamage.Length; i++)
-        {   
-            Monster.GetComponent<EnemyHealth>().monsterattacked();
-        }
+            Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
+            for (int i = 0; i < enemiesToDamage.Length; i++)
+            {   
+                enemiesToDamage[i].GetComponent<EnemyHealth>().mhp -=damage;
+            }
        // speed.rb.velocity = new Vector2(speed.runSpeed/2,speed.rb.velocity.y);
         //speed.runSpeed = speed.runSpeed/2;
     }

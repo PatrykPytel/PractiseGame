@@ -30,6 +30,7 @@ public class Finalmovement : MonoBehaviour
 	private float wallJumpingDuration = 0.4f;
 	private Vector2 wallJumpingPower = new Vector2(8f, 16f);
 	private bool noconstrains = true;
+	public int playerscale=1;
 
     //bool jump= false;
 
@@ -84,6 +85,7 @@ public class Finalmovement : MonoBehaviour
 			m_FacingRight = !m_FacingRight; 		// Switch the way the player is labelled as facing.
 			Vector3 theScale = player.transform.localScale;  	// Multiply the player's x local scale by -1.
 			theScale.x *= -1;
+			playerscale *= -1;
 			player.transform.localScale = theScale;			
 		}
 	}
