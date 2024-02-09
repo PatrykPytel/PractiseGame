@@ -20,22 +20,24 @@ public class EnemyHealth : MonoBehaviour
     }
     public void monsterhurt()
     {
-        mhp -=2;
         Monster.GetComponent<EnemyPatrol>().Speedfreeze();
     }
     public void monsterattacked() { 
-        mhp -=1;
         Monster.GetComponent<EnemyPatrol>().Knockback();
-    }
+    }   
     void Update()
     {
         if(mhp<=0) {
             animator.SetBool("isdead", true);
             rb.simulated = false;
             Invoke("monsterdead", dyinganim);
-
         }
         else if(mhp<previoushp) {
+            if(mhp+2==previoushp) { 
+                monsterattacked();
+            }else if(mhp+4==previoushp) { 
+                monsterhurt();
+            }
             animator.SetBool("strucked", true);
             previoushp = mhp;
         }

@@ -10,7 +10,7 @@ public class Attacking : MonoBehaviour
     public float attackRange;
     public LayerMask whatisEnemies;
    // public bool enemyIsClose;
-    public GameObject Monster;
+   // public GameObject Monster;
     public float cooldown;
     public float timepassed=0;
     public float time;

@@ -14,7 +14,7 @@ public class basicattack : MonoBehaviour
     public LayerMask whatisEnemies;
     public int damage;
   //  public bool enemyIsClose;
-    public GameObject Monster;
+    //public GameObject Monster;
     // Start is called before the first frame update
     void Start()
     {

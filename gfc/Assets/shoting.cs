@@ -7,6 +7,8 @@ public class shoting : MonoBehaviour
     public bool shooting= false;
     public Rigidbody2D rb;
     public float speed;
+    public LayerMask whatstopsyou;
+    public float damage=0.5f;
 
     //private Vector3 offset = new Vector3(0f, 0f,-10f);
     //private float smoothTime = 0.25f;
@@ -22,23 +24,33 @@ public class shoting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Shot();
-        if(shooting) { 
-            rb.velocity = new Vector2(speed*player.playerscale,0);
-        }else{ 
+        if(Input.GetKeyDown(KeyCode.Z) && shooting == false) { 
             transform.position = target.position;
+            Shot();
+        }
+        Transform();
+        
+    }
+    private void Shot() { 
+        if(Input.GetKeyDown(KeyCode.Z)) { 
+            rb.velocity = new Vector2(speed*player.playerscale,0);
+            shooting = true;
+
         }
     }
-    public void Shot() { 
-        if(Input.GetKeyDown(KeyCode.Z)) { 
-               shooting = true;
+    private void Transform() { 
+        if(shooting==false) { 
+            transform.position = target.position;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag=="Enemy")
+        if (collision.tag=="Wall")
         {
-            Debug.Log("dfshi");
+            shooting =false;
+        }else if(collision.GetComponent<EnemyHealth>() != null) {
+            collision.GetComponent<EnemyHealth>().mhp -=damage;
+            shooting =false;
         }
     }
 }
