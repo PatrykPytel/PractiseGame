@@ -7,8 +7,9 @@ public class shoting : MonoBehaviour
     public bool shooting= false;
     public Rigidbody2D rb;
     public float speed;
-    public LayerMask whatstopsyou;
+  //  public LayerMask whatstopsyou;
     public float damage=0.5f;
+    [SerializeField] private GameObject spritecol;
 
     //private Vector3 offset = new Vector3(0f, 0f,-10f);
     //private float smoothTime = 0.25f;
@@ -26,7 +27,10 @@ public class shoting : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Z) && shooting == false) { 
             transform.position = target.position;
+            spritecol.SetActive(true);
             Shot();
+        } else if(shooting==false){ 
+            spritecol.SetActive(false);
         }
         Transform();
         

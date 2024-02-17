@@ -16,6 +16,7 @@ public class Healthmanager : MonoBehaviour
     [SerializeField] private float lflashy;
     [SerializeField] private float damage;
     private SpriteRenderer spriteRend;
+    [SerializeField] private SpriteRenderer Background;
     
     void Start()
     {
@@ -69,8 +70,10 @@ public class Healthmanager : MonoBehaviour
         for(int i =0; i<lflashy; i++)
         {
             spriteRend.color= new Color(1,0,0,0.5f);
+            Background.color= new Color(1,0,0,0.5f);//Color.grey;
             yield return new WaitForSeconds(niesmiertelnosc/(lflashy*2 ));
             spriteRend.color = Color.white;
+            Background.color = Color.white;
             yield return new WaitForSeconds(niesmiertelnosc/(lflashy*2 ));
         }
         Physics2D.IgnoreLayerCollision(10,11, false);

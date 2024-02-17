@@ -11,6 +11,7 @@ public class EndofGame : MonoBehaviour
     public GameObject GameOverUI; 
     public GameObject ItemUI;
     [SerializeField] private Openchest skrzynia; 
+
     // Start is called before the first frame update
 
     // Update is called once per frame
