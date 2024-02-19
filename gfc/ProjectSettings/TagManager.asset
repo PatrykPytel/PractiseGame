@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Heart
   - Wall
+  - Point
   layers:
   - Default
   - TransparentFX
