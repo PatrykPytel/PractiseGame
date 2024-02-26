@@ -15,6 +15,7 @@ public class Healthmanager : MonoBehaviour
     [SerializeField] private float niesmiertelnosc;
     [SerializeField] private float lflashy;
     [SerializeField] private float damage;
+    [SerializeField] private float thorndmg;
     private SpriteRenderer spriteRend;
     [SerializeField] private SpriteRenderer Background;
     
@@ -61,6 +62,9 @@ public class Healthmanager : MonoBehaviour
         if (collision.tag=="Enemy")
         {
             TakeDamage(damage);
+            CameraShake.Myinstance.StartCoroutine(CameraShake.Myinstance.Shake());
+        }else if(collision.tag=="EvilPlant")  { 
+            TakeDamage(thorndmg);
             CameraShake.Myinstance.StartCoroutine(CameraShake.Myinstance.Shake());
         }
     }
