@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public float mhp;
+    [SerializeField] Hpwrogow hp;
     public GameObject Monster;
     public Animator animator;
     private float previoushp;
@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Start() 
     {
-        previoushp = mhp;
+        previoushp = hp.mhp;
         rb= GetComponent<Rigidbody2D>();
     }
     public void monsterhurt()
@@ -27,19 +27,19 @@ public class EnemyHealth : MonoBehaviour
     }   
     void Update()
     {
-        if(mhp<=0) {
+        if(hp.mhp<=0) {
             animator.SetBool("isdead", true);
             rb.simulated = false;
             Invoke("monsterdead", dyinganim);
         }
-        else if(mhp<previoushp) {
-            if(mhp+2==previoushp) { 
+        else if(hp.mhp<previoushp) {
+            if(hp.mhp==previoushp) { 
                 monsterattacked();
-            }else if(mhp+4==previoushp) { 
+            }else if(hp.mhp+4==previoushp) { 
                 monsterhurt();
             }
             animator.SetBool("strucked", true);
-            previoushp = mhp;
+            previoushp = hp.mhp;
         }
         else { 
             animator.SetBool("strucked", false);
@@ -54,3 +54,8 @@ public class EnemyHealth : MonoBehaviour
     //    {
           //  animator.SetBool("strucked", true);//
     //    } //
+             //   if(hp.mhp==previoushp) { 
+        //        monsterattacked();
+         //   }else if(hp.mhp+4==previoushp) { 
+        //        monsterhurt();
+          //  }

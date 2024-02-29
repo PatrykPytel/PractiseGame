@@ -55,7 +55,7 @@ public class basicattack : MonoBehaviour
             Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
             for (int i = 0; i < enemiesToDamage.Length; i++)
             {   
-                enemiesToDamage[i].GetComponent<EnemyHealth>().mhp -=damage;
+                enemiesToDamage[i].GetComponent<Hpwrogow>().mhp -=damage;
             }
        // speed.rb.velocity = new Vector2(speed.runSpeed/2,speed.rb.velocity.y);
         //speed.runSpeed = speed.runSpeed/2;

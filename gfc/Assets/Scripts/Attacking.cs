@@ -32,7 +32,7 @@ public class Attacking : MonoBehaviour
                 Collider2D[]enemiesToDamage=Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatisEnemies);
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {   
-                    enemiesToDamage[i].GetComponent<EnemyHealth>().mhp -=damage;
+                    enemiesToDamage[i].GetComponent<Hpwrogow>().mhp -=damage;
                 }
                 Invoke("Startmovement", attackduration); 
             }

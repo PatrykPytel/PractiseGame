@@ -16,44 +16,45 @@ public class shoting : MonoBehaviour
     //private Vector3 velocity = Vector3.zero;
     [SerializeField] private Transform target;
     [SerializeField] private Finalmovement player;
+    private float cooldown = 2f;
+    private float restartcooldown;
     // Start is called before the first frame update
     void Start()
     {
-        
+        restartcooldown = cooldown;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z) && shooting == false) { 
+        Transform();
+        if(Input.GetKeyDown(KeyCode.Z) && cooldown <= 0 ) { 
+            cooldown = restartcooldown;
             transform.position = target.position;
             spritecol.SetActive(true);
             Shot();
-        } else if(shooting==false){ 
-            spritecol.SetActive(false);
+        }else { 
+            cooldown -= Time.deltaTime;
         }
-        Transform();
         
     }
     private void Shot() { 
-        if(Input.GetKeyDown(KeyCode.Z)) { 
             rb.velocity = new Vector2(speed*player.playerscale,0);
             shooting = true;
-
-        }
     }
     private void Transform() { 
         if(shooting==false) { 
-            transform.position = target.position;
+            transform.position = target.position; 
+            spritecol.SetActive(false);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag=="Wall")
-        {
+        if(collision.tag == "Wall") {
             shooting =false;
-        }else if(collision.GetComponent<EnemyHealth>() != null) {
-            collision.GetComponent<EnemyHealth>().mhp -=damage;
+        }
+        if(collision.GetComponent<Hpwrogow>() != null) {
+            collision.GetComponent<Hpwrogow>().mhp -=damage;
             shooting =false;
         }
     }

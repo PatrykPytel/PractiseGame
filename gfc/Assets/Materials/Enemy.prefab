@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3426214492587646420}
   - component: {fileID: 3426214492587646422}
   - component: {fileID: 3426214492587646423}
+  - component: {fileID: 1289432994083395712}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
@@ -104,7 +105,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05308324, y: -0.035389066}
+  m_Offset: {x: 0.03372717, y: -0.0779928}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -115,7 +116,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2469438, y: 1.4592774}
+  m_Size: {x: 1.2082317, y: 1.3740699}
   m_EdgeRadius: 0
 --- !u!61 &3426214492587646427
 BoxCollider2D:
@@ -130,7 +131,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.050489485, y: -0.025244713}
+  m_Offset: {x: 0.0384413, y: -0.029000044}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -141,7 +142,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3402017, y: 1.5589895}
+  m_Size: {x: 1.3324616, y: 1.5514789}
   m_EdgeRadius: 0
 --- !u!50 &3426214492587646421
 Rigidbody2D:
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805191a918a5d8c4eaabc96c629434f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mhp: 6
+  hp: {fileID: 1289432994083395712}
   Monster: {fileID: 3426214492587646431}
   animator: {fileID: 3426214492587646423}
   dyinganim: 1.2
@@ -220,6 +221,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1289432994083395712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426214492587646431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2e0de3cbc159b4cacfdf7467613aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mhp: 6
 --- !u!1 &3426214492816840288
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +246,7 @@ GameObject:
   m_Layer: 11
   m_Name: groundcheck
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
