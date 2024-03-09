@@ -21,7 +21,11 @@ public class Dodawaniezycia : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player") {
             Destroy(heart);
-            health.health +=1;
+            if (health.health<health.maxHealth) {
+                health.health += 1;
+            }
+
+            
         }
     }
 }

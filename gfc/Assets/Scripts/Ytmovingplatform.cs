@@ -7,6 +7,7 @@ public class Ytmovingplatform : MonoBehaviour
     [SerializeField] private GameObject[] waypoints;
     private int currentWayPointIndex = 0;
     [SerializeField] private float speed = 2f;
+  //  [SerializeField] private Finalmovement player;
 
     // Update is called once per frame
     void Update()
@@ -21,8 +22,10 @@ public class Ytmovingplatform : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D coll) { 
         coll.transform.SetParent(transform);
+     //   player.runSpeed += 100;
     }
     private void OnCollisionExit2D(Collision2D coll) {
         coll.transform.SetParent(null);
+     //   player.runSpeed -= 100;
     }
 }

@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
         previoushp = hp.mhp;
         rb= GetComponent<Rigidbody2D>();
     }
-    public void monsterhurt()
+    public void monsterfreeze()
     {
         Monster.GetComponent<EnemyPatrol>().Speedfreeze();
     }
@@ -33,11 +33,7 @@ public class EnemyHealth : MonoBehaviour
             Invoke("monsterdead", dyinganim);
         }
         else if(hp.mhp<previoushp) {
-            if(hp.mhp==previoushp) { 
-                monsterattacked();
-            }else if(hp.mhp+4==previoushp) { 
-                monsterhurt();
-            }
+            monsterfreeze();
             animator.SetBool("strucked", true);
             previoushp = hp.mhp;
         }
@@ -51,11 +47,16 @@ public class EnemyHealth : MonoBehaviour
     }     
 }
 //        if (health<=0) 
-    //    {
-          //  animator.SetBool("strucked", true);//
-    //    } //
-             //   if(hp.mhp==previoushp) { 
-        //        monsterattacked();
-         //   }else if(hp.mhp+4==previoushp) { 
-        //        monsterhurt();
-          //  }
+//    {
+//  animator.SetBool("strucked", true);//
+//    } //
+//   if(hp.mhp==previoushp) { 
+//        monsterattacked();
+//   }else if(hp.mhp+4==previoushp) { 
+//        monsterhurt();
+//  }
+//         if(hp.mhp==previoushp) { 
+//           monsterattacked();
+///      }else if(hp.mhp+4==previoushp) { 
+//           monsterhurt();
+//   }

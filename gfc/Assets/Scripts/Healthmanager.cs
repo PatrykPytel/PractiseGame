@@ -7,6 +7,7 @@ public class Healthmanager : MonoBehaviour
 {
     [SerializeField] private float PoczatkoweZycie;
     public float health;
+    public float maxHealth;
     public Image[] hearts;
     public Sprite pelneserce;
     public Sprite pusteserce;
@@ -21,6 +22,7 @@ public class Healthmanager : MonoBehaviour
     
     void Start()
     {
+        maxHealth = health;
         spriteRend = GetComponent<SpriteRenderer>();
         
     }
