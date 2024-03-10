@@ -17,12 +17,12 @@ public class ScoreManager : MonoBehaviour
         score +=1;
         scoreText.text = score.ToString() + " POINTS";
     }
-
-    // Update is called once per frame
-
-  //  private void Awake() { 
-     //   scoreText = GetComponent<TMP_Text>();
-  //  }
     
-    
+    // Update is called once per frameOn
+
+    //  private void Awake() { 
+    //   scoreText = GetComponent<TMP_Text>();
+    //  }
+
+
 }
