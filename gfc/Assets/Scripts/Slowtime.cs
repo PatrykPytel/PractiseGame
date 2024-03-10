@@ -7,6 +7,7 @@ public class Slowtime : MonoBehaviour
 {
     private float cooldown;
     public Transform target;
+  //  [SerializeField]  private Finalmovement;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +18,10 @@ public class Slowtime : MonoBehaviour
     void Update()
     {
         cooldown -= Time.deltaTime; 
-        if(cooldown <= 0 )
+        if(cooldown <= 0)
         {
             Time.timeScale = 1f;
+
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
