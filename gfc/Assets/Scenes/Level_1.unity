@@ -4301,54 +4301,45 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.99642944
-      inSlope: -0.059810355
-      outSlope: -0.059810355
+      value: 1.0002289
+      inSlope: -0.021749381
+      outSlope: -0.021749381
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.18015923
-      value: 0.98565406
-      inSlope: 0.0059567764
-      outSlope: 0.0059567764
+      time: 0.09759545
+      value: 0.99810624
+      inSlope: -0.008583878
+      outSlope: -0.008583878
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.30913907
-      value: 0.994905
-      inSlope: 0.01965824
-      outSlope: 0.01965824
+      time: 0.5248274
+      value: 1.0000637
+      inSlope: -0.0007436408
+      outSlope: -0.0007436408
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.5037864
-      value: 0.988597
-      inSlope: -0.023474367
-      outSlope: -0.023474367
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8598409
-      value: 0.9834195
-      inSlope: 0.039140776
-      outSlope: 0.039140776
+      time: 0.84441304
+      value: 0.9981241
+      inSlope: 0.0037294787
+      outSlope: 0.0037294787
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.99642944
-      inSlope: 0.09282286
-      outSlope: 0.09282286
+      value: 1.0002289
+      inSlope: 0.013527864
+      outSlope: 0.013527864
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -12490,7 +12481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 20
-  startjumpforce: 40
+  startjumpforce: 20
   slowedjumpforce: 40
   m_WhatIsGround:
     serializedVersion: 2
