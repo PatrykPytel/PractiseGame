@@ -39,7 +39,7 @@ public class Slowtime : MonoBehaviour
             cooldown = 10;
             transform.position = target.position;
             move.runSpeed = move.doublespeed;
-            move.rb.gravityScale = 6f;
+            move.rb.gravityScale = 10f;
             move.m_JumpForce = move.slowedjumpforce;
             timeslowed = true;
         }

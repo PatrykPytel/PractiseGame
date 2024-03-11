@@ -12490,6 +12490,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 20
+  startjumpforce: 40
+  slowedjumpforce: 40
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 80
@@ -12508,6 +12510,7 @@ MonoBehaviour:
   cooldown: 1
   mnoznikspeed: 5
   startspeed: 0
+  doublespeed: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
