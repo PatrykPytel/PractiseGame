@@ -18,13 +18,14 @@ public class Healthmanager : MonoBehaviour
     [SerializeField] private float damage;
     [SerializeField] private float thorndmg;
     private SpriteRenderer spriteRend;
-    [SerializeField] private SpriteRenderer Background;
+    Image Background;
     
     void Start()
     {
         maxHealth = health;
         spriteRend = GetComponent<SpriteRenderer>();
-        
+        Background = GameObject.Find("Background").GetComponent<Image>();
+
     }
     private void Awake()
     {
@@ -79,7 +80,8 @@ public class Healthmanager : MonoBehaviour
             Background.color= new Color(1,0,0,0.5f);//Color.grey;
             yield return new WaitForSeconds(niesmiertelnosc/(lflashy*2 ));
             spriteRend.color = Color.white;
-            Background.color = Color.white;
+            //Background.color = new Color.(0,0,0,0f);
+            Background.color = new Color(0, 0, 0, 0f);
             yield return new WaitForSeconds(niesmiertelnosc/(lflashy*2 ));
         }
         Physics2D.IgnoreLayerCollision(10,11, false);

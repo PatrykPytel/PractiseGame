@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slowtime : MonoBehaviour
 {
@@ -11,12 +12,12 @@ public class Slowtime : MonoBehaviour
     Finalmovement move;
     Rigidbody2D rb;
     private bool timeslowed = false;
-    private SpriteRenderer Background;
+    Image Background;
     // Start is called before the first frame update
     void Start()
     {
         move= GameObject.Find("Player").GetComponent<Finalmovement>();
-        Background = GameObject.Find("Background").GetComponent<SpriteRenderer>();
+        Background = GameObject.Find("Background").GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -30,7 +31,7 @@ public class Slowtime : MonoBehaviour
             move.m_JumpForce = move.startjumpforce;
             move.rb.gravityScale = 3f;
             timeslowed = false ;
-            Background.color = Color.white;
+            Background.color = new Color(0,0,0,0f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
