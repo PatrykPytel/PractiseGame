@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Finalmovement : MonoBehaviour
 {
-    public float m_JumpForce = 20f;							// Amount of force added when the player jumps.
+    public float m_JumpForce = 20f;
+	public float startjumpforce = 20f;
+	public float slowedjumpforce = 40f;// Amount of force added when the player jumps.
 	//[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;	
@@ -41,6 +44,7 @@ public class Finalmovement : MonoBehaviour
 
     public float mnoznikspeed;
     public float startspeed;
+	public float doublespeed;
 
     // Start is called before the first frame update
     [Header("Events")]
@@ -103,6 +107,7 @@ public class Finalmovement : MonoBehaviour
     void Start()
     {
         startspeed = runSpeed;
+		doublespeed = runSpeed * 2;
     }
 
     // Update is called once per frame
